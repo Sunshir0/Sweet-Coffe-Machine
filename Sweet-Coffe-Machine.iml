@@ -45,5 +45,14 @@
     <orderEntry type="library" name="org.junit.vintage:junit-vintage-engine:5.5.2" level="application" />
     <orderEntry type="library" name="org.assertj:assertj-core:3.12.2" level="application" />
     <orderEntry type="library" name="org.junit.vintage:junit-vintage-engine:4.12.3" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/annotations-17.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

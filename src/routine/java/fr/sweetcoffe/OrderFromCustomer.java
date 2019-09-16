@@ -1,8 +1,12 @@
 package fr.sweetcoffe;
 
+import java.math.BigDecimal;
+
 public class OrderFromCustomer {
     private CoffeMachine.Drinks drink;
     private String sugars;
+    private BigDecimal currentAmount;
+
 
     public OrderFromCustomer(CoffeMachine.Drinks drink) {
         this.drink = drink;
@@ -13,6 +17,13 @@ public class OrderFromCustomer {
     public OrderFromCustomer(int sugars, int stick) {
         this.sugars = String.valueOf(sugars);
     }
+
+    public OrderFromCustomer(CoffeMachine.Drinks drink, String sugars, BigDecimal currentAmount) {
+        this.drink = drink;
+        this.sugars = String.valueOf(sugars);
+        this.currentAmount = currentAmount;
+    }
+
 
     public OrderFromCustomer(CoffeMachine.Drinks drink, int sugars) {
         this.drink = drink;
@@ -41,6 +52,22 @@ public class OrderFromCustomer {
 
     public String sugars() {
         return this.sugars;
+    }
+
+    public OrderFromCustomer updateCurrentAmount(BigDecimal currentAmount) {
+        return new OrderFromCustomer(drink, sugars, currentAmount);
+    }
+
+    public String drinkToString() {
+        return String.valueOf(drink);
+    }
+
+    public BigDecimal currentAmount() {
+        return this.currentAmount;
+    }
+
+    public CoffeMachine.Drinks drinkConstant() {
+        return this.drink;
     }
 
 

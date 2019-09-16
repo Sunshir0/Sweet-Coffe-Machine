@@ -11,7 +11,9 @@ public class CoffeMachine {
 
         if (!drink.equalsIgnoreCase(Drinks.T.toString())
                 && !drink.equalsIgnoreCase(Drinks.H.toString())
-                && !drink.equalsIgnoreCase(Drinks.C.toString()))
+                && !drink.equalsIgnoreCase(Drinks.C.toString())
+                && !drink.equalsIgnoreCase(Drinks.O.toString()))
+
             result = "Error : Choose between TEA:T, CAFFE:C, CHOCOLATE:H";
         else
             result = drink;
@@ -30,8 +32,13 @@ public class CoffeMachine {
         String instructions = "";
         if (orderFromCustomer.drink().equals(Drinks.T.toString())
                 || orderFromCustomer.drink().equals(Drinks.H.toString())
-                || orderFromCustomer.drink().equals(Drinks.C.toString()))
+                || orderFromCustomer.drink().equals(Drinks.C.toString())
+                || orderFromCustomer.drink().equals(Drinks.O.toString()))
+
             instructions += selectDrink(orderFromCustomer.drink());
+        if (orderFromCustomer.optionToString().equals(Drinks.Option.EH.toString()))
+            instructions += "EH";
+
         instructions += ":";
         if (orderFromCustomer.sugars().isEmpty())
             instructions += ":";
@@ -86,12 +93,17 @@ public class CoffeMachine {
         return "Missing " + formatMissingAmount(selectedDrink, orderCurrentAmount) + " cents to complete order";
     }
 
+
     private int formatMissingAmount(@NotNull CoffeMachine.Drinks selectedDrink, BigDecimal orderCurrentAmount) {
         return ((selectedDrink.getMoney().subtract(orderCurrentAmount)).multiply(new BigDecimal("100"))).intValueExact();
     }
 
+    public enum Option {
+        EH;
+    }
 
     public enum Drinks {
+        O(new BigDecimal("0.6"), "O"),
         T(new BigDecimal("0.4"), "T"),
         H(new BigDecimal("0.5"), "H"),
         C(new BigDecimal("0.6"), "C");
@@ -111,6 +123,11 @@ public class CoffeMachine {
         public String getInitial() {
             return initial;
         }
+
+        public enum Option {
+            EH;
+        }
+
     }
 
 }

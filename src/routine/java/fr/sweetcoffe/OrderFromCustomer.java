@@ -6,6 +6,7 @@ public class OrderFromCustomer {
     private CoffeMachine.Drinks drink;
     private String sugars;
     private BigDecimal currentAmount;
+    private CoffeMachine.Drinks.Option option;
 
 
     public OrderFromCustomer(CoffeMachine.Drinks drink) {
@@ -14,7 +15,8 @@ public class OrderFromCustomer {
 
     }
 
-    public OrderFromCustomer(int sugars, int stick) {
+    public OrderFromCustomer(CoffeMachine.Drinks drink, int sugars) {
+        this.drink = drink;
         this.sugars = String.valueOf(sugars);
     }
 
@@ -24,10 +26,25 @@ public class OrderFromCustomer {
         this.currentAmount = currentAmount;
     }
 
+    public OrderFromCustomer(int sugars, int stick) {
+        this.sugars = String.valueOf(sugars);
+    }
 
-    public OrderFromCustomer(CoffeMachine.Drinks drink, int sugars) {
+    public OrderFromCustomer(CoffeMachine.Drinks drink, String sugars, BigDecimal currentAmount, CoffeMachine.Drinks.Option option) {
         this.drink = drink;
         this.sugars = String.valueOf(sugars);
+        this.currentAmount = currentAmount;
+        this.option = option;
+
+    }
+
+    public CoffeMachine.Drinks.Option option() {
+        return this.option;
+    }
+
+
+    public OrderFromCustomer updateOption(CoffeMachine.Drinks.Option option) {
+        return new OrderFromCustomer(drink, sugars, currentAmount, option);
     }
 
     public OrderFromCustomer changeDrink(CoffeMachine.Drinks drink) {
@@ -64,6 +81,10 @@ public class OrderFromCustomer {
 
     public BigDecimal currentAmount() {
         return this.currentAmount;
+    }
+
+    public String optionToString() {
+        return String.valueOf(option);
     }
 
     public CoffeMachine.Drinks drinkConstant() {
